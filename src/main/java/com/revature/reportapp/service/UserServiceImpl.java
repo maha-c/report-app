@@ -1,14 +1,12 @@
 package com.revature.reportapp.service;
 
-import com.revature.reportapp.entity.Login;
+import com.revature.reportapp.dto.Login;
 import com.revature.reportapp.entity.User;
 import com.revature.reportapp.repository.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-
-import static java.util.Collections.replaceAll;
 
 @Service
 
@@ -42,12 +40,11 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public User getByNameAndPassword(Login login) {
-        User result = userRepo.findByUsernameAndPassword(login.getUserName(),login.getPassword());
+    public User getByUserNameAndPassword(Login login) {
+        User result = userRepo.getByUserNameAndPassword(login.getUserName(),login.getPassword());
         result.setPassword(result.getPassword().replaceAll(".","*"));;
         return result;
     }
-
 
     @Override
     public boolean delete(Long id) {

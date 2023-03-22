@@ -1,6 +1,6 @@
 package com.revature.reportapp.service;
 import com.revature.reportapp.entity.User;
-import com.revature.reportapp.entity.Login;
+import com.revature.reportapp.dto.Login;
 import com.revature.reportapp.repository.UserRepo;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -22,7 +22,7 @@ public class UserServiceTest {
 
     @Test
     public void testInsert(){
-        User user1 = new User(3l,"Elsa","elsa123","COUNCIL-MEMBER");
+        User user1 = new User(3l,"Elsa","elsa123","COUNCIL");
         User user2 = new User(5l,"Anna","anna12","CONSTITUENT");
         Mockito.when(userRepo.save(user1)).thenReturn(user2);
         Assertions.assertEquals(user2,userService.insert(user1));
@@ -30,7 +30,7 @@ public class UserServiceTest {
 
     @Test
     public void testGetById(){
-        User user1 = new User(3l,"Patrick","pass123","COUNCIL-MEMBER");
+        User user1 = new User(3l,"Patrick","pass123","COUNCIL");
         Mockito.when(userRepo.findById(3l)).thenReturn(Optional.of(user1));
         Assertions.assertEquals(user1,userService.getById(3l));
     }
@@ -38,7 +38,7 @@ public class UserServiceTest {
     @Test
     public void testGetAll(){
         List<User> users = new ArrayList<>(){{
-            User user1 = new User(1l,"Elsa","elsa123","COUNCIL- MEMBER");
+            User user1 = new User(1l,"Elsa","elsa123","COUNCIL");
             User user2 = new User(2l,"Anna","anna456","CONSTITUENT");
             User user3 = new User(3l,"Alex","alexarrow23","CONSTITUENT");
         }};
@@ -48,8 +48,8 @@ public class UserServiceTest {
 
     @Test
     public void testUpdate(){
-        User user1 = new User(1l,"Elsa","elsa123","COUNCIL-MEMBER");
-        User user2 = new User(1l,"Elsa","elsa789","COUNCIL-MEMBER");
+        User user1 = new User(1l,"Elsa","elsa123","COUNCIL");
+        User user2 = new User(1l,"Elsa","elsa789","COUNCIL");
         Mockito.when(userRepo.save(user1)).thenReturn(user2);
         Assertions.assertEquals(user2,userService.update(user1));
     }
@@ -64,10 +64,10 @@ public class UserServiceTest {
 
     @Test
     public void testGetUserNameAndPassword(){
-        User user1 = new User(8l,"elsa","elsa123","COUNCIL-MEMBER");
+        User user1 = new User(8l,"elsa","elsa123","COUNCIL");
         Login log = new Login("elsa","elsa123");
-        Mockito.when(userRepo.findByUsernameAndPassword("elsa","elsa123")).thenReturn(user1);
-        User user2 = userService.getByNameAndPassword(log);
+        Mockito.when(userRepo.getByUserNameAndPassword("elsa","elsa123")).thenReturn(user1);
+        User user2 = userService.getByUserNameAndPassword(log);
         Assertions.assertEquals("elsa",user2.getUserName());
         Assertions.assertEquals("*******",user2.getPassword());
     }

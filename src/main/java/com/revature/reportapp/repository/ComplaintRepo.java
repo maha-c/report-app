@@ -9,4 +9,5 @@ import java.util.List;
 @Repository
 public interface ComplaintRepo extends JpaRepository<Complaint, Long> {
     List<Complaint> findByStatus(String status);
+
 }

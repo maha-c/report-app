@@ -1,5 +1,4 @@
 package com.revature.reportapp.service;
-
 import com.revature.reportapp.entity.Complaint;
 import com.revature.reportapp.repository.ComplaintRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,9 +38,13 @@ public class ComplaintServiceImpl implements ComplaintService {
             case "REVIEWED":
                 return complaintRepo.findByStatus("REVIEWED");
             case "UNDER-REVIEW":
-                return complaintRepo.findByStatus("UNDER-REVIEW");
-            case "CLOSED":
-                return complaintRepo.findByStatus("CLOSED");
+                return complaintRepo.findByStatus("UN-REVIEWED");
+            case "HIGH PRIORITY":
+                return complaintRepo.findByStatus("HIGH PRIORITY");
+            case "LOW PRIORITY":
+                return complaintRepo.findByStatus("LOW PRIORITY");
+            case "IGNORED":
+                return complaintRepo.findByStatus("IGNORED");
             default:
                 return complaintRepo.findAll();
         }

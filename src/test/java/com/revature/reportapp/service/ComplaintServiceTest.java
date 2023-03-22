@@ -22,7 +22,7 @@ public class ComplaintServiceTest {
     @Test
     public void testInsert(){
         Complaint comp1 = new Complaint(1l,"Missing Vehicle","REVIEWED",1l);
-        Complaint comp2 = new Complaint(5l,"Missing Packages","UNDER-REVIEW",5l);
+        Complaint comp2 = new Complaint(5l,"Missing Packages","UN-REVIEWED",5l);
         Mockito.when(complaintRepo.save(comp1)).thenReturn(comp2);
         Assertions.assertEquals(comp2,complaintService.insert(comp1));
     }
@@ -38,7 +38,7 @@ public class ComplaintServiceTest {
     public void testGetAll(){
         List<Complaint> complaints = new ArrayList<>(){{
             Complaint comp1 = new Complaint(3l,"Missing Vehicle","REVIEWED",1l);
-            Complaint comp2 = new Complaint(2l,"Missing Packages","UNDER-REVIEW",7l);
+            Complaint comp2 = new Complaint(2l,"Missing Packages","UN-REVIEWED",7l);
            
         }};
         Mockito.when(complaintRepo.findAll()).thenReturn(complaints);
@@ -47,8 +47,8 @@ public class ComplaintServiceTest {
 
     @Test
     public void testUpdate(){
-        Complaint comp1 = new Complaint(5l,"Missing Vehicle","UNDER-REVIEW",1l);
-        Complaint comp2 = new Complaint(5l,"Missing Vehicles","UNDER-REVIEW",1l);
+        Complaint comp1 = new Complaint(5l,"Missing Vehicle","UN-REVIEWED",1l);
+        Complaint comp2 = new Complaint(5l,"Missing Vehicles","REVIEWED",1l);
         Mockito.when(complaintRepo.save(comp1)).thenReturn(comp2);
         Assertions.assertEquals(comp2,complaintService.update(comp1));
     }
@@ -65,15 +65,15 @@ public class ComplaintServiceTest {
     public void testGetByStatus(){
         List<Complaint> complaints = new ArrayList<>(){{
             Complaint comp1 = new Complaint(2l,"Missing Vehicle","REVIEWED",1l);
-            Complaint comp2 = new Complaint(3l,"Missing Packages","CLOSED",4l);
-            Complaint comp3 = new Complaint(5l,"Missing Lawnmower","UNDER-REVIEW",6l);
+            Complaint comp2 = new Complaint(3l,"Missing Packages","IGNORED",4l);
+            Complaint comp3 = new Complaint(5l,"Missing Lawnmower","UN-REVIEWED",6l);
         }};
         List<Complaint> regcomplaints = new ArrayList<>(){{
             Complaint comp1 = new Complaint(2l,"Missing Vehicle","REVIEWED",1l);
-            Complaint comp3 = new Complaint(5l,"Missing Lawnmower","UNDER-REVIEW",2l);
+            Complaint comp3 = new Complaint(5l,"Missing Lawnmower","UN-REVIEWED",2l);
         }};
-        Mockito.when(complaintRepo.findByStatus("UNDER-REVIEW")).thenReturn(regcomplaints);
-        Assertions.assertEquals(regcomplaints,complaintService.getAll("UNDER-REVIEW"));
+        Mockito.when(complaintRepo.findByStatus("UN-REVIEWED")).thenReturn(regcomplaints);
+        Assertions.assertEquals(regcomplaints,complaintService.getAll("UN-REVIEWED"));
     }
 
 }

@@ -1,6 +1,5 @@
 package com.revature.reportapp.controller;
-
-import com.revature.reportapp.entity.Login;
+import com.revature.reportapp.dto.Login;
 import com.revature.reportapp.entity.User;
 import com.revature.reportapp.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/users")
+@CrossOrigin(origins = "http://localhost:3001")
 public class UserController {
 
     @Autowired
@@ -20,7 +20,7 @@ public class UserController {
     @PostMapping
     public ResponseEntity<User> insert(@RequestBody User user) {
         User insertedUser = userService.insert(user);
-        return new ResponseEntity<>(insertedUser, HttpStatus.OK);
+        return new ResponseEntity<>(insertedUser, HttpStatus.CREATED);
     }
 
     @GetMapping("/{userIdentifier}")
@@ -66,7 +66,7 @@ public class UserController {
         }
         return ResponseEntity.ok((user));
     }
-    //    @PatchMapping
+//    @PatchMapping
 //    public User getUser(@RequestBody Login login){
 //        return userService.getByNameAndPassword(login);
 //    }
