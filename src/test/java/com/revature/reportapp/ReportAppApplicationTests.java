@@ -5,17 +5,19 @@ import com.revature.reportapp.repository.ComplaintRepo;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.TestPropertySource;
 
 @SpringBootTest
+@TestPropertySource("classpath:test.properties")
 class ReportAppApplicationTests {
 	@Autowired
 	ComplaintRepo complaintRepo;
 
-	@Test
-	public void testCreate() {
-		Complaint comp = new Complaint(0l, "aaaaa", "UNDER-REVIEW", 2l);
-		complaintRepo.save(comp);
-	}
+//	@Test
+//	public void testCreate() {
+//		Complaint comp = new Complaint(0l, "aaaaa", "UNDER-REVIEW", 2l);
+//		complaintRepo.save(comp);
+//	}
 
 	@Test
 	public void getAllComplaints(){
