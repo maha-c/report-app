@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.NoSuchElementException;
 @RestController
 @RequestMapping("/complaints")
-@CrossOrigin(origins = "http://localhost:3001")
+@CrossOrigin(origins = "*")
 
 
 public class ComplaintController {

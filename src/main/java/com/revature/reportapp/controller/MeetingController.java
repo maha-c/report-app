@@ -13,7 +13,7 @@ import java.util.NoSuchElementException;
 
 @RestController
 @RequestMapping("/meetings")
-@CrossOrigin(origins = "http://localhost:3001")
+@CrossOrigin(origins = "*")
 public class MeetingController {
     @Autowired
     MeetingService meetingService;
